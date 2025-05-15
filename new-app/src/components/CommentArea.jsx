@@ -15,7 +15,7 @@ class CommentArea extends Component {
   }
 
   fetchComments = async () => {
-    const url = `https://striveschool-api.herokuapp.com/api/comments/${this.props.asin}`;
+    const url = "https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin;
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE0ODZlMjFjMjUwNDAwMTUxYWI2NzgiLCJpYXQiOjE3NDczMDg1MDcsImV4cCI6MTc0ODUxODEwN30.DgB8KZdY0G081Z6nCikY8PpGzfBtxoBLCf6v8tBTk8A";
 
@@ -39,14 +39,14 @@ class CommentArea extends Component {
   };
 
   render() {
-    const { comments, isLoading, error } = this.state;
+    const { isLoading, error } = this.state;
 
     return (
       <div onClick={(e) => e.stopPropagation()} style={{ marginTop: "1rem", color: "black" }}>
         <h5>Commenti:</h5>
         {isLoading && <p>Caricamento in corso...</p>}
         {error && <p style={{ color: "red" }}>Errore: {error}</p>}
-        <CommentsList comments={comments} />
+        <CommentsList comments={this.state.comments} />
         <AddComment asin={this.props.asin} onCommentAdded={this.fetchComments} />
       </div>
     );
